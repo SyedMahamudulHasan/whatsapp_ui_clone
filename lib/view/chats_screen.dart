@@ -10,15 +10,22 @@ class ChatsScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.only(
+        left: 16,
+        right: 16,
+      ),
       child: ListView.builder(
+        shrinkWrap: true,
         itemCount: user.length,
         itemBuilder: ((context, index) {
           return Column(
             children: [
-              UserChat(
-                user: user,
-                index: index,
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.10,
+                child: UserChat(
+                  user: user,
+                  index: index,
+                ),
               ),
               Padding(
                 padding:

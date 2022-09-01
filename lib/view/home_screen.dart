@@ -26,41 +26,57 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.appbarColor,
-        title: const Text(
-          'WhatsApp',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-          ),
-        ),
-        actions: const [
-          IconButton(
-            onPressed: null,
-            icon: Icon(
-              Icons.search_outlined,
-              color: Colors.white,
-              size: 24,
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          SliverAppBar(
+            backgroundColor: AppColors.appbarColor,
+            snap: false,
+            pinned: true,
+            floating: true, //this make the work done.
+            title: const Text(
+              'WhatsApp',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
             ),
-          ),
-          IconButton(
-            onPressed: null,
-            icon: Icon(
-              Icons.more_vert,
-              color: Colors.white,
-              size: 24,
+            actions: const [
+              IconButton(
+                onPressed: null,
+                icon: Icon(
+                  Icons.search_outlined,
+                  color: Colors.white,
+                  size: 24,
+                ),
+              ),
+              IconButton(
+                onPressed: null,
+                icon: Icon(
+                  Icons.more_vert,
+                  color: Colors.white,
+                  size: 24,
+                ),
+              ),
+            ],
+            bottom: TabBar(
+              controller: _tabController,
+              //isScrollable: true,
+              indicatorColor: Colors.white,
+              indicatorWeight: 3.0,
+              //labelPadding: EdgeInsets.all(8),
+              tabs: TabBarItem.tabList.map((tab) => tab).toList(),
             ),
           ),
         ],
-        bottom: TabBar(
+        body: TabBarView(
           controller: _tabController,
-          //isScrollable: true,
-          indicatorColor: Colors.white,
-          indicatorWeight: 3.0,
-          //labelPadding: EdgeInsets.all(8),
-          tabs: TabBarItem.tabList.map((tab) => tab).toList(),
+          children: const [
+            Text('camera'),
+            ChatsScreen(),
+            Text('camera'),
+            Text('camera'),
+          ],
         ),
       ),
       floatingActionButton: const FloatingActionButton(
@@ -71,15 +87,30 @@ class _HomeScreenState extends State<HomeScreen>
           color: Colors.white,
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: const [
-          Text('camera'),
-          ChatsScreen(),
-          Text('camera'),
-          Text('camera'),
-        ],
-      ),
     );
+  }
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate(this._tabBar);
+
+  final TabBar _tabBar;
+
+  @override
+  double get minExtent => _tabBar.preferredSize.height;
+  @override
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return new Container(
+      child: _tabBar,
+    );
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
   }
 }
