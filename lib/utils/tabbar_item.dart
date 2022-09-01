@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../constants/app_color.dart';
 
 class TabBarItem {
-  static final msg_notification = 1;
+  static const msg_notification = 1;
   static final tabList = [
     const Tab(
       icon: Icon(Icons.camera_alt_rounded),
@@ -29,7 +29,7 @@ class TabBarItem {
                   ),
                   child: Text(
                     msg_notification.toString(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: AppColors.appbarColor,
                     ),
                   ),
