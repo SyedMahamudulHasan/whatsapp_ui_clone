@@ -61,10 +61,10 @@ class _HomeScreenState extends State<HomeScreen>
             ],
             bottom: TabBar(
               controller: _tabController,
-              //isScrollable: true,
+            
               indicatorColor: Colors.white,
               indicatorWeight: 3.0,
-              //labelPadding: EdgeInsets.all(8),
+              
               tabs: TabBarItem.tabList.map((tab) => tab).toList(),
             ),
           ),
