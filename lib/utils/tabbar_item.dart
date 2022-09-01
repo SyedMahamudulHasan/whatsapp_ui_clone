@@ -18,7 +18,9 @@ class TabBarItem {
             ),
           ),
           msg_notification == 0
-              ? Container()
+              ? const Padding(
+                  padding: EdgeInsets.zero,
+                )
               : Container(
                   padding: const EdgeInsets.all(6),
                   decoration: const BoxDecoration(

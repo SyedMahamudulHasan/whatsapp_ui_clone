@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_ui_clone/constants/app_color.dart';
+import 'package:whatsapp_ui_clone/view/chats_screen.dart';
 
 import '../utils/tabbar_item.dart';
 
@@ -12,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
+  // ignore: prefer_typing_uninitialized_variables
   late final _tabController;
 
   @override
@@ -61,11 +63,19 @@ class _HomeScreenState extends State<HomeScreen>
           tabs: TabBarItem.tabList.map((tab) => tab).toList(),
         ),
       ),
+      floatingActionButton: const FloatingActionButton(
+        backgroundColor: AppColors.fltButton,
+        onPressed: null,
+        child: Icon(
+          Icons.chat_outlined,
+          color: Colors.white,
+        ),
+      ),
       body: TabBarView(
         controller: _tabController,
         children: const [
           Text('camera'),
-          Text('camera'),
+          ChatsScreen(),
           Text('camera'),
           Text('camera'),
         ],

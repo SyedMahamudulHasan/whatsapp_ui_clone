@@ -1,12 +1,16 @@
 import 'package:intl/intl.dart';
 
 class ChatData {
-  final String? image;
-  final String? name;
-  final String? lastMsg;
-  final String? time;
+  final String image;
+  final String name;
+  final String lastMsg;
+  final String time;
 
-  ChatData({this.image, this.name, this.lastMsg, this.time});
+  ChatData(
+      {required this.image,
+      required this.name,
+      required this.lastMsg,
+      required this.time});
 
   List<ChatData> get getData => [
         ChatData(
