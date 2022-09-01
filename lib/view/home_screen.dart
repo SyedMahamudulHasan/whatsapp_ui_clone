@@ -23,8 +23,12 @@ class _HomeScreenState extends State<HomeScreen>
     super.initState();
   }
 
+  cameraTab() {}
+
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    int i = 1;
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
@@ -61,21 +65,26 @@ class _HomeScreenState extends State<HomeScreen>
             ],
             bottom: TabBar(
               controller: _tabController,
-            
+              isScrollable: true,
               indicatorColor: Colors.white,
               indicatorWeight: 3.0,
-              
-              tabs: TabBarItem.tabList.map((tab) => tab).toList(),
+              labelPadding: EdgeInsets.zero,
+              tabs: TabBarItem.tabList
+                  .map((tab) => SizedBox(
+                        width: i++ == 1 ? size.width * 0.15 : size.width * 0.28,
+                        child: tab,
+                      ))
+                  .toList(),
             ),
           ),
         ],
         body: TabBarView(
           controller: _tabController,
           children: const [
-            Text('camera'),
+            Center(child: Text('CAMERA')),
             ChatsScreen(),
-            Text('camera'),
-            Text('camera'),
+            Center(child: Text('STATUS')),
+            Center(child: Text('CALLS')),
           ],
         ),
       ),

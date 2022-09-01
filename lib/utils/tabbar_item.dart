@@ -5,11 +5,13 @@ class TabBarItem {
   static const msg_notification = 1;
   static final tabList = [
     const Tab(
+      iconMargin: EdgeInsets.zero,
       icon: Icon(Icons.camera_alt_rounded),
     ),
     Tab(
       //text: "CHATS",
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Flexible(
             child: Padding(
@@ -33,7 +35,7 @@ class TabBarItem {
                       color: AppColors.appbarColor,
                     ),
                   ),
-                )
+                ),
         ],
       ),
     ),
